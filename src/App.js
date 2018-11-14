@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 
 import Menu from './components/menu';
+import Error from './components/error';
 
+import Navigation from './components/navigation';
+import Blog from './components/blog';
+import Services from './components/services';
+
+import './App.css';
 
 import {BrowserRouter as Router, Route, Switch, Link , NavLink,Redirect} from 'react-router-dom';
 
@@ -29,10 +35,17 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Switch>
-          <Route exact path="/" component = {Home} />
-          <Route exact path="/menu" component = {()=><Menu menus={this.state.menus} />} />
-        </Switch>
+
+        <div>
+          <Navigation/>
+          <Switch>
+            <Route exact path="/" component = {Home} />
+            <Route exact path="/menu" component = {()=><Menu menus={this.state.menus} />} />
+            <Route exact path="/blog" component={Blog} />
+            <Route exact path="/services" component={Services} />
+            <Route component={Error} />
+          </Switch>
+        </div>
       </Router>
     );
   }
